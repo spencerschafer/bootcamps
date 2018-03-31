@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 	while (index < argc)
 	{
 		str = argv[index];
-		toUpper(argv[index]);
+		toUpper(str);
 		index++;
 	}
 	std::cout << std::endl;
