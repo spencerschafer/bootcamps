@@ -1,4 +1,4 @@
-NAME =megaphone
+NAME =phonebook
 FLAGS=-Wall -Werror -Wextra
 SRCS=*.cpp
 
@@ -18,7 +18,7 @@ $(NAME):
 	@echo "[ $(GR)Build Complete$(NC) ]"
 
 clean:
-	@rm -rf megaphone
+	@rm -rf $(NAME)
 	@echo "[ $(LB)Removed Executables$(NC) ]"
 
 re: clean all
