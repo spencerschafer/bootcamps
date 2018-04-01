@@ -5,9 +5,6 @@ SRCS=*.cpp
 #Green
 GR=\033[1;32m
 
-#Light Blue
-LB=\033[1;34m
-
 #No Colour
 NC=\033[0m
 
@@ -19,6 +16,6 @@ $(NAME):
 
 clean:
 	@rm -rf $(NAME)
-	@echo "[ $(LB)Removed Executables$(NC) ]"
+	@echo "[ $(GR)Removed Executables$(NC) ]"
 
 re: clean all

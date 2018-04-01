@@ -73,54 +73,39 @@ class Contact
 
 		void printLogin()
 		{
-			std::cout << "Login: "; std::cout << this->login;
-			std::cout << std::endl;
+			std::cout << "Login: " << this->login << std::endl;
 		}
 
 		void printContact()
 		{
-			std::cout << "First Name: "; std::cout << this->firstName;
-			std::cout << std::endl;
+			std::cout << "First Name: " << this->firstName << std::endl;
 
-			std::cout << "Last Name: "; std::cout << this->lastName;
-			std::cout << std::endl;
+			std::cout << "Last Name: "<< this->lastName << std::endl;
 
-			std::cout << "Nickname: "; std::cout << this->nickname;
-			std::cout << std::endl;
+			std::cout << "Nickname: "<< this->nickname << std::endl;
 
-			std::cout << "Login: "; std::cout << this->login;
-			std::cout << std::endl;
+			std::cout << "Login: " << this->login << std::endl;
 
-			std::cout << "Login: "; std::cout << this->login;
-			std::cout << std::endl;
+			std::cout << "Login: " << this->login << std::endl;
 
-			std::cout << "Email: "; std::cout << this->emailAddress;
-			std::cout << std::endl;
+			std::cout << "Email: " << this->emailAddress << std::endl;
 
-			std::cout << "Phone Number: "; std::cout << this->phoneNumber;
-			std::cout << std::endl;
+			std::cout << "Phone Number: " << this->phoneNumber << std::endl;
 
-			std::cout << "Birthday: "; std::cout << this->birthday;
-			std::cout << std::endl;
+			std::cout << "Birthday: " << this->birthday << std::endl;
 
-			std::cout << "Favourite Meal: "; std::cout << this->favouriteMeal;
-			std::cout << std::endl;
+			std::cout << "Favourite Meal: " << this->favouriteMeal << std::endl;
 
-			std::cout << "Underwear Colour"; std::cout << this->underwearColour;
-			std::cout << std::endl;
+			std::cout << "Underwear Colour" << this->underwearColour << std::endl;
 
-			std::cout << "Darkest Secret: "; std::cout << this->darkestSecret;
-			std::cout << std::endl;
-
+			std::cout << "Darkest Secret: " << this->darkestSecret << std::endl;
 		}
 };
 
 void promptForm(Contact contact)
 {
-	std::string input;
-	std::cout << std::endl;
-	std::cout << "Pleaese fill in the following contact details:";
-	std::cout << std::endl;
+	std::string input << std::endl;
+	std::cout << "Pleaese fill in the following contact details:" << std::endl;
 
 	std::cout << "First Name: ";
 	std::cin >> input; 
@@ -177,15 +162,13 @@ int main(void)
 	{
 		//User prompt
 		std::string input;
-		std::cout << "Choose from the following commands:";
-		std:: cout << std::endl;
+		std::cout << "Choose from the following commands:" << std::endl;
 
 		//User commands
-		std::cout << "ADD / SEARCH / EXIT"; std::cout << std::endl;
-		std::cout << std::endl;
+		std::cout << "ADD / SEARCH / EXIT" << std::endl << std::endl;
 
 		//User input
-		std::cout << "Enter command:"; std::cout << std::endl;
+		std::cout << "Enter command:" << std::endl;
 		std::cin >> input;
 
 		if (input == "ADD" || input == "A")
@@ -200,8 +183,7 @@ int main(void)
 				promptForm(contact[count]);
 				std::cout << std::endl;
 
-				std::cout << contact[count].firstName;
-				std::cout << std::endl;
+				std::cout << contact[count].firstName << std::endl;
 			}
 		}
 		else if (input == "SEARCH" || input == "S")
@@ -210,12 +192,10 @@ int main(void)
 			bool found = false;
 			std::string input;
 
-			std::cout << std::endl;
-			std::cout << "Enter Login details to search: ";
-			std::cout << std::endl;
+			std::cout << std::endl << "Enter Login details: " << std::endl;
 
 			std::cin >> input;
-			std::cout << "Input: [" + input + "]"; std::cout << std::endl;
+			std::cout << "Input: [" + input + "]" << std::endl;
 			while (index < 8)
 			{
 				std::cout << (contact[index]).login;
@@ -230,24 +210,20 @@ int main(void)
 			if (found) {
 				contact[index].printContact();
 				std::cout << "Login1: [" + (contact[index]).login + "]";
-				std::cout << std::endl;
-				std::cout << "00";
+				std::cout << std::endl << "00";
 				(contact[index]).printLogin();
 			}
 			else
 			{
-				std::cout << std::endl;
-				std::cout << "That person does not exist.";
-				std::cout << std::endl;
-				std::cout << std::endl;
+				std::cout << std::endl << "That person does not exist.";
+				std::cout << std::endl << std::endl;
 			}
 		}
 		else if (input == "EXIT" || input == "E")
 			return (0);
 		else
 		{
-			std::cout << "Please be more specific with your choice.";
-			std::cout << std::endl;
+			std::cout << "Please be more specific with your choice." << std::endl;
 		}
 	}
 	std::cout << std::endl;
