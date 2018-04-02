@@ -1,6 +1,11 @@
 #include <iostream>
+#include <iomanip>
 #include "phonebook.hpp"
-//std::cout << std::endl;
+
+
+//TODO
+//1) Handle index input scope
+//2) Correct output of search columns
 
 void printContact(Contact contact)
 {
@@ -16,6 +21,44 @@ void printContact(Contact contact)
 	std::cout << "Underwear Colour" << contact.underwearColour << std::endl;
 	std::cout << "Darkest Secret: " << contact.darkestSecret << std::endl;
 	std::cout << std::endl;
+}
+
+void printShortContact(Contact contact, int index)
+{	
+	++index;
+	/*
+	   output not correct
+	   std::string temp;
+
+	   std::cout << std::setw(10) << std::right << index << "|";
+
+	   temp = contact.firstName.substr(0, 9) + ".";
+	   std::cout << std::setw(10) << std::right << temp << "|";
+
+	   temp = contact.lastName.substr(0, 9) + ".";
+	   std::cout << std::setw(10) << std::right << temp << "|";
+
+	   temp = contact.nickname.substr(0, 9) + ".";
+	   std::cout << std::setw(10) << std::right << temp << "|";
+	   */
+	std::cout << std::setw(10) << std::right << index << "|";
+	std::cout << std::setw(10) << std::right << contact.firstName << "|";
+	std::cout << std::setw(10) << std::right << contact.lastName << "|";
+	std::cout << std::setw(10) << std::right << contact.nickname << "|";
+	std::cout << std::endl;
+}
+
+int isNumber(std::string str)
+{
+	unsigned long index = 0;
+
+	while (index < str.length())
+	{
+		if (!isdigit(str[index]))
+			return (0);
+		++index;
+	}
+	return (1);
 }
 
 void promptForm(Contact *contact)
@@ -63,7 +106,7 @@ void promptForm(Contact *contact)
 int main(void)
 {
 
-	int SIZE = 8;
+	int SIZE = 2;
 	Contact contact[SIZE];
 	int count = 0;
 
@@ -95,29 +138,44 @@ int main(void)
 		else if (input == "SEARCH" || input == "S")
 		{
 			int index = 0;
+			int option;
 			std::string input;
+
+			std::cout << std::setw(10) << std::right << "Index" << "|";
+			std::cout << std::setw(10) << std::right << "First Name" << "|";
+			std::cout << std::setw(10) << std::right << "Last Name" << "|";
+			std::cout << std::setw(10) << std::right << "Nickname" << "|";
+			std::cout << std::endl;
+
+			while (index < count)
+			{
+				printShortContact(contact[index], index);
+				++index;
+			}
 
 			std::cout << std::endl;
 			std::cout << "Enter index: " << std::endl;
 			std::cin >> input;
 			std::cout << std::endl;
 
-			while (index < count)
+			if (isNumber(input))
 			{
-				if (!contact[index].login.compare(input))
-				{
-					printContact(contact[index]);
-					break;
-				}
+				//breaks with 99999999999999999999999999
+				option = std::stoi(input) - 1;
+				if (option >= 0 && option < count)
+					printContact(contact[option]);
 				else
-					++index;
+				{
+					std::cout << "Please be more specific with your choice";
+					std::cout << std::endl << std::endl;
+				}
 			}
-			if (index == count)
+			else
 			{
-				std::cout << std::endl;
-				std::cout << "No contact exists with the details '" << input;
-				std::cout << "'" << std::endl << std::endl;
+				std::cout << "Please be more specific with your choice";
+				std::cout << std::endl << std::endl;
 			}
+
 		}
 		else if (input == "EXIT" || input == "E")
 			return (0);

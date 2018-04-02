@@ -22,7 +22,7 @@ void toUpper(char *str)
 			std::cout << (char) (*str - 32);
 		else 
 			std::cout << *str;
-		str++;
+		++str;
 	}
 }
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 	{
 		str = argv[index];
 		toUpper(str);
-		index++;
+		++index;
 	}
 	std::cout << std::endl;
 	return 0;
