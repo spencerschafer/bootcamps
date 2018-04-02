@@ -19,7 +19,4 @@ class Contact
 		std::string darkestSecret;
 };
 
-void printContact(Contact contact);
-void promptForm(Contact *contact);
-
 #endif

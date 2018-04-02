@@ -1,23 +1,23 @@
 # Things to remember
 
-- Define SIZE was used to allow lower numbers to be used for testing.
+- Line 10, Note 1: Define SIZE was used to allow lower numbers to be used for testing.
 
-- Note 1, line 117: Address of contact object  was passsed to allow 
+- Line 117, Note 2: Address of contact object  was passsed to allow 
 modification to the fields so that when the promptForm function closes, the
 values remain. Before the values were being passed in but only remained
 for the lifetime of the function.
 
-- Note 2, line 124: Checks to see whether or not a contact has been added
+- Line 124, Note 3: Checks to see whether or not a contact has been added
 before allowing a user to search for a contact.
 
-- Note 3, line 127: Option has been made -1 so that if it is not passed into the
+- Line 127, Note 4: Option has been made -1 so that if it is not passed into the
 function on line 30, then the test fails the if-statement on line 162 printing
 an error message.
 
-- Note 4, line 145: While loop that passes in each contact to be printed for
+- Line 145, Note 5: While loop that passes in each contact to be printed for
 the user when the SEARCH command is used.
 
-- Note 5, line 160: Checks whether the length of the input has a length of 1
+- Line 160, Note 6: Checks whether the length of the input has a length of 1
 as the phonebook only goes up to 8. Therefore only 1 digit is needed to
 represent 8. Additionally, if the length of the string is only 1, it then checks
 that the character entered is a digit. If it is a digit, the character is then
@@ -29,7 +29,7 @@ from 1). Since 1 has been added to the index, 1 needs to be subtracted from the
 (i.e. contact 1 will be contact[0] in the array as 1 has been added to the 
 index).
 
-- Note 6, line 165: This if-statement has been optimised to only search the 
+- Line 165, Note 7: This if-statement has been optimised to only search the 
 contacts that have been added. (i.e. if array has only 3 contacts, only search
 from 1 - 3 contacts, and not 1- 8. Note that 1 - 3 will be 0 - 2 in the array).
 

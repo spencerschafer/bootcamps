@@ -7,6 +7,7 @@
  * Notes are described in README.md along with relevant tests
  */
 
+//Note 1
 //define size of phonebook/array
 #define SIZE 8
 
@@ -17,7 +18,7 @@ void printContact(Contact contact)
 	std::cout << std::setw(18) << std::left << "Last Name: "<< contact.lastName << std::endl;
 	std::cout << std::setw(18) << std::left << "Nickname: "<< contact.nickname << std::endl;
 	std::cout << std::setw(18) << std::left << "Login: " << contact.login << std::endl;
-	std::cout << std::setw(18) << std::left << "Login: " << contact.login << std::endl;
+	std::cout << std::setw(18) << std::left << "Postal Address: " << contact.postalAddress << std::endl;
 	std::cout << std::setw(18) << std::left << "Email: " << contact.emailAddress << std::endl;
 	std::cout << std::setw(18) << std::left << "Phone Number: " << contact.phoneNumber << std::endl;
 	std::cout << std::setw(18) << std::left << "Birthday: " << contact.birthday << std::endl;
@@ -120,17 +121,17 @@ int main(void)
 			}
 			else
 			{
-				//Note 1
+				//Note 2
 				promptForm(&contact[count]);
 				++count;
 			}
 		}
 		else if (input == "SEARCH" || input == "S")
 		{
-			//Note 2
+			//Note 3
 			if (count > 0)
 			{
-				//Note 3
+				//Note 4
 				int index = 0;
 				int option = -1;
 				std::string input;
@@ -143,7 +144,7 @@ int main(void)
 				std::cout << std::setw(10) << std::right << "Nickname" << "|";
 				std::cout << std::endl;
 
-				//Note 4
+				//Note 5
 				//Printing each subsequent short contact
 				while (index < count)
 				{
@@ -157,12 +158,12 @@ int main(void)
 				std::getline(std::cin, input);
 				std::cout << std::endl;
 
-				//Note 5
+				//Note 6
 				//If option is a valid input, convert input to integer
 				if (input.length() == 1 && isdigit(input[0]))
 					option = std::stoi(input) - 1;
 
-				//Note 6
+				//Note 7
 				//If input was valid: print contact, else option remains -1
 				//and prints error
 				if (option >= 0 && option < count)
