@@ -2,103 +2,88 @@
 #include <iomanip>
 #include "phonebook.hpp"
 
+//define size of phonebook/array
+#define SIZE 2
 
 //TODO
-//1) Handle index input scope
-//2) Correct output of search columns
+//- Explain in detail TODO's for future use
 
+//Print contact fields
 void printContact(Contact contact)
 {
-	std::cout << "First Name: " << contact.firstName << std::endl;
-	std::cout << "Last Name: "<< contact.lastName << std::endl;
-	std::cout << "Nickname: "<< contact.nickname << std::endl;
-	std::cout << "Login: " << contact.login << std::endl;
-	std::cout << "Login: " << contact.login << std::endl;
-	std::cout << "Email: " << contact.emailAddress << std::endl;
-	std::cout << "Phone Number: " << contact.phoneNumber << std::endl;
-	std::cout << "Birthday: " << contact.birthday << std::endl;
-	std::cout << "Favourite Meal: " << contact.favouriteMeal << std::endl;
-	std::cout << "Underwear Colour" << contact.underwearColour << std::endl;
-	std::cout << "Darkest Secret: " << contact.darkestSecret << std::endl;
+	std::cout << std::setw(18) << std::left << "First Name: " << contact.firstName << std::endl;
+	std::cout << std::setw(18) << std::left << "Last Name: "<< contact.lastName << std::endl;
+	std::cout << std::setw(18) << std::left << "Nickname: "<< contact.nickname << std::endl;
+	std::cout << std::setw(18) << std::left << "Login: " << contact.login << std::endl;
+	std::cout << std::setw(18) << std::left << "Login: " << contact.login << std::endl;
+	std::cout << std::setw(18) << std::left << "Email: " << contact.emailAddress << std::endl;
+	std::cout << std::setw(18) << std::left << "Phone Number: " << contact.phoneNumber << std::endl;
+	std::cout << std::setw(18) << std::left << "Birthday: " << contact.birthday << std::endl;
+	std::cout << std::setw(18) << std::left << "Favourite Meal: " << contact.favouriteMeal << std::endl;
+	std::cout << std::setw(18) << std::left << "Underwear Colour: " << contact.underwearColour << std::endl;
+	std::cout << std::setw(18) << std::left << "Darkest Secret: " << contact.darkestSecret << std::endl;
 	std::cout << std::endl;
 }
 
+//trimming string to fit within 10 chars, with final char being a '.'
+void printField(std::string field)
+{
+	if (field.length() > 10)
+		std::cout << std::setw(10) << std::right << field.substr(0, 9) + "." << "|";
+	else
+		std::cout << std::setw(10) << std::right << field << "|";
+}
+
+//Print shorthand contact information with relevant format
 void printShortContact(Contact contact, int index)
 {	
 	++index;
-	/*
-	   output not correct
-	   std::string temp;
-
-	   std::cout << std::setw(10) << std::right << index << "|";
-
-	   temp = contact.firstName.substr(0, 9) + ".";
-	   std::cout << std::setw(10) << std::right << temp << "|";
-
-	   temp = contact.lastName.substr(0, 9) + ".";
-	   std::cout << std::setw(10) << std::right << temp << "|";
-
-	   temp = contact.nickname.substr(0, 9) + ".";
-	   std::cout << std::setw(10) << std::right << temp << "|";
-	   */
 	std::cout << std::setw(10) << std::right << index << "|";
-	std::cout << std::setw(10) << std::right << contact.firstName << "|";
-	std::cout << std::setw(10) << std::right << contact.lastName << "|";
-	std::cout << std::setw(10) << std::right << contact.nickname << "|";
+	printField(contact.firstName);
+	printField(contact.lastName);
+	printField(contact.nickname);
 	std::cout << std::endl;
 }
 
-int isNumber(std::string str)
-{
-	unsigned long index = 0;
-
-	while (index < str.length())
-	{
-		if (!isdigit(str[index]))
-			return (0);
-		++index;
-	}
-	return (1);
-}
-
+//Prompt user to fill relevant contact fields
 void promptForm(Contact *contact)
 {
 	std::string input;
 	std::cout << std::endl;
 	std::cout << "Pleaese fill in the following contact details:" << std::endl;
 
-	std::cout << "First Name: ";
-	std::cin >> contact->firstName;
+	std::cout << std::setw(18) << std::left << "First Name: ";
+	std::getline(std::cin, contact->firstName);
 
-	std::cout << "Last Name: ";
-	std::cin >> contact->lastName;
+	std::cout << std::setw(18) << std::left << "Last Name: ";
+	std::getline(std::cin, contact->lastName);
 
-	std::cout << "Nickname: ";
-	std::cin >> contact->nickname;
+	std::cout << std::setw(18) << std::left << "Nickname: ";
+	std::getline(std::cin, contact->nickname);
 
-	std::cout << "Login: ";
-	std::cin >> contact->login;
+	std::cout << std::setw(18) << std::left << "Login: ";
+	std::getline(std::cin, contact->login);
 
-	std::cout << "Postal Address: ";
-	std::cin >> contact->postalAddress;
+	std::cout << std::setw(18) << std::left << "Postal Address: ";
+	std::getline(std::cin, contact->postalAddress);
 
-	std::cout << "Email: ";
-	std::cin >> contact->emailAddress;
+	std::cout << std::setw(18) << std::left << "Email: ";
+	std::getline(std::cin, contact->emailAddress);
 
-	std::cout << "Phone Number: ";
-	std::cin >> contact->phoneNumber;
+	std::cout << std::setw(18) << std::left << "Phone Number: ";
+	std::getline(std::cin, contact->phoneNumber);
 
-	std::cout << "Birthday: ";
-	std::cin >> contact->birthday;
+	std::cout << std::setw(18) << std::left << "Birthday: ";
+	std::getline(std::cin, contact->birthday);
 
-	std::cout << "Favourite Meal: ";
-	std::cin >> contact->favouriteMeal;
+	std::cout << std::setw(18) << std::left << "Favourite Meal: ";
+	std::getline(std::cin, contact->favouriteMeal);
 
-	std::cout << "Underwear Colour: ";
-	std::cin >> contact->underwearColour;
+	std::cout << std::setw(18) << std::left << "Underwear Colour: ";
+	std::getline(std::cin, contact->underwearColour);
 
-	std::cout << "Darkest Secret: ";
-	std::cin >> contact->darkestSecret;
+	std::cout << std::setw(18) << std::left << "Darkest Secret: ";
+	std::getline(std::cin, contact->darkestSecret);
 	std::cout << std::endl << std::endl;
 
 }
@@ -106,13 +91,12 @@ void promptForm(Contact *contact)
 int main(void)
 {
 
-	int SIZE = 2;
-	Contact contact[SIZE];
 	int count = 0;
+	Contact contact[SIZE];
 
 	while (true)
 	{
-		//User prompt
+		//Prompt user
 		std::string input;
 		std::cout << "Choose from the following commands:" << std::endl;
 
@@ -120,8 +104,8 @@ int main(void)
 		std::cout << "ADD / SEARCH / EXIT" << std::endl << std::endl;
 
 		//User input
-		std::cout << "Enter command:" << std::endl;
-		std::cin >> input;
+		std::cout << "Enter command: ";
+		std::getline(std::cin, input);
 
 		if (input == "ADD" || input == "A")
 		{
@@ -132,38 +116,56 @@ int main(void)
 				std::cout << std::endl << std::endl;
 			}
 			else
+			{
+				//TODO
 				promptForm(&contact[count]);
-			++count;
+				++count;
+			}
 		}
 		else if (input == "SEARCH" || input == "S")
 		{
-			int index = 0;
-			int option;
-			std::string input;
-
-			std::cout << std::setw(10) << std::right << "Index" << "|";
-			std::cout << std::setw(10) << std::right << "First Name" << "|";
-			std::cout << std::setw(10) << std::right << "Last Name" << "|";
-			std::cout << std::setw(10) << std::right << "Nickname" << "|";
-			std::cout << std::endl;
-
-			while (index < count)
+			//TODO
+			if (count > 0)
 			{
-				printShortContact(contact[index], index);
-				++index;
-			}
+				//TODO
+				int index = 0;
+				int option = -1;
+				std::string input;
 
-			std::cout << std::endl;
-			std::cout << "Enter index: " << std::endl;
-			std::cin >> input;
-			std::cout << std::endl;
+				//Printing column format
+				std::cout << std::endl;
+				std::cout << std::setw(10) << std::right << "Index" << "|";
+				std::cout << std::setw(10) << std::right << "First Name" << "|";
+				std::cout << std::setw(10) << std::right << "Last Name" << "|";
+				std::cout << std::setw(10) << std::right << "Nickname" << "|";
+				std::cout << std::endl;
 
-			if (isNumber(input))
-			{
-				//breaks with 99999999999999999999999999
-				option = std::stoi(input) - 1;
+				//TODO
+				//Printing each subsequent short contact
+				while (index < count)
+				{
+					printShortContact(contact[index], index);
+					++index;
+				}
+
+				//Prompt user
+				std::cout << std::endl;
+				std::cout << "Enter contact's index: ";
+				std::getline(std::cin, input);
+				std::cout << std::endl;
+
+				//TODO
+				//If option is a valid input, convert input to integer
+				if (input.length() == 1 && isdigit(input[0]))
+					option = std::stoi(input) - 1;
+
+				//TODO
+				//If input was valid: print contact, else option remains -1
+				//and prints error
 				if (option >= 0 && option < count)
+				{
 					printContact(contact[option]);
+				}
 				else
 				{
 					std::cout << "Please be more specific with your choice";
@@ -172,7 +174,9 @@ int main(void)
 			}
 			else
 			{
-				std::cout << "Please be more specific with your choice";
+				std::cout << std::endl;
+				std::cout << "Your phonebook is currently empty." << std::endl;
+				std::cout << "Use the ADD command to add a new contact.";
 				std::cout << std::endl << std::endl;
 			}
 
