@@ -172,7 +172,7 @@ int main(void)
 				}
 				else
 				{
-					std::cout << "Please be more specific with your choice";
+					std::cout << "Please be more specific with your choice.";
 					std::cout << std::endl << std::endl;
 				}
 			}
