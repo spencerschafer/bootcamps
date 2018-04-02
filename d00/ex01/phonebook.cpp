@@ -2,11 +2,13 @@
 #include <iomanip>
 #include "phonebook.hpp"
 
-//define size of phonebook/array
-#define SIZE 2
+/*
+ * NB:
+ * Notes are described in README.md along with relevant tests
+ */
 
-//TODO
-//- Explain in detail TODO's for future use
+//define size of phonebook/array
+#define SIZE 8
 
 //Print contact fields
 void printContact(Contact contact)
@@ -37,6 +39,7 @@ void printField(std::string field)
 //Print shorthand contact information with relevant format
 void printShortContact(Contact contact, int index)
 {	
+	//Index is increased by 1 so that index stars from 1 and not 0
 	++index;
 	std::cout << std::setw(10) << std::right << index << "|";
 	printField(contact.firstName);
@@ -117,17 +120,17 @@ int main(void)
 			}
 			else
 			{
-				//TODO
+				//Note 1
 				promptForm(&contact[count]);
 				++count;
 			}
 		}
 		else if (input == "SEARCH" || input == "S")
 		{
-			//TODO
+			//Note 2
 			if (count > 0)
 			{
-				//TODO
+				//Note 3
 				int index = 0;
 				int option = -1;
 				std::string input;
@@ -140,7 +143,7 @@ int main(void)
 				std::cout << std::setw(10) << std::right << "Nickname" << "|";
 				std::cout << std::endl;
 
-				//TODO
+				//Note 4
 				//Printing each subsequent short contact
 				while (index < count)
 				{
@@ -154,12 +157,12 @@ int main(void)
 				std::getline(std::cin, input);
 				std::cout << std::endl;
 
-				//TODO
+				//Note 5
 				//If option is a valid input, convert input to integer
 				if (input.length() == 1 && isdigit(input[0]))
 					option = std::stoi(input) - 1;
 
-				//TODO
+				//Note 6
 				//If input was valid: print contact, else option remains -1
 				//and prints error
 				if (option >= 0 && option < count)
