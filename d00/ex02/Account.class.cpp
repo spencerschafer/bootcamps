@@ -42,7 +42,7 @@ Account::Account(int initial_deposit)
 {
 	//[20150406_153629] index:0;amount:42;created
 
-    this->_accountIndex = _nbAccounts;
+	this->_accountIndex = _nbAccounts;
 	this->_amount = initial_deposit;
 	this->_nbDeposits = 0;
 	this->_nbWithdrawals = 0;
@@ -58,7 +58,7 @@ Account::Account(int initial_deposit)
 Account::~Account(void)
 {
 	//[20150406_153629] index:7;amount:8942;closed
-    _displayTimestamp();
+	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 };
 
@@ -80,22 +80,32 @@ void	Account::makeDeposit(int deposit)
 //TODO: Fix
 bool Account::makeWithdrawal(int withdrawal)
 {
-//	[20150406_153629] index:0;p_amount:47;withdrawal:refused
 //	[20150406_153629] index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
-	_totalAmount -= withdrawal;
-	_totalNbWithdrawals += 1;
+	if (_amount - withdrawal >= 0) {
 
-	this->_amount -= withdrawal;
-	this->_nbWithdrawals += 1;
-	std::cout << "makeWithdrawal:" << std::endl;
-	return (true);
+		_totalAmount -= withdrawal;
+		_totalNbWithdrawals += 1;
+
+		this->_amount -= withdrawal;
+		this->_nbWithdrawals += 1;
+
+		_displayTimestamp();
+		std::cout << "index:" << _accountIndex << ";p_amount:" << _amount + withdrawal << ";withdrawal:" << withdrawal << ";";
+		std::cout << "amount:" << _amount <<  ";nb_withdrawals:" << _nbWithdrawals << std::endl;
+		return (true);
+	}
+
+//	[20150406_153629] index:0;p_amount:47;withdrawal:refused
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";withdrawal:refused" << std::endl;
+	return (false);
 }
 
 //  BONUS - implement checkAmount
 int Account::checkAmount(void) const
 {
 	std::cout << "checkAmount: " << std::endl;
-    return (0);
+	return (0);
 }
 
 void Account::displayStatus(void) const
@@ -120,7 +130,7 @@ void	Account::_displayTimestamp(void)
 	std::cout << std::setw(2) << std::setfill('0') << ltm->tm_hour;
 	std::cout << std::setw(2) << std::setfill('0') << ltm->tm_min;
 	std::cout << std::setw(2) << std::setfill('0') << ltm->tm_sec;
-    std::cout << "] ";
+	std::cout << "] ";
 }
 
 //TODO: Understand this constructor
