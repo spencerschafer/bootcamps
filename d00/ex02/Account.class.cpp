@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include "Account.class.h"
+#include "Account.class.hpp"
 
-static int	getNbAccounts(void)
+static int	getNbAccounts(Account account)
 {
 	//std::cout << _nbAccounts;
 	return _nbAccounts;
@@ -23,7 +23,7 @@ static int	getNbDeposits(void)
 static int	getNbWithdrawals( void )
 {
 	//std::cout << _totalNbWithdrawals;	
-	return _totalNbwithdrawals;
+	return _totalNbWithdrawals;
 }
 
 static void	displayAccountsInfos( void );
@@ -38,7 +38,7 @@ Account::Account(int initial_deposit)
 	// static amounts
 	_nbAccounts += 1;
 	_totalAmount += initial_deposit;
-	_totalNbDeposists += 1;
+	_totalNbDeposits += 1;
 
 	//specifc class amounts
 	Account._accountIndex += 1;
@@ -81,4 +81,9 @@ void displayStatus(void) const
 static void	_displayTimestamp(void)
 {
 	
+}
+
+int main(void)
+{
+    Account account;
 }
