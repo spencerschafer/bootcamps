@@ -8,4 +8,5 @@ include_directories(.)
 add_executable(ex02
         Account.class.cpp
         Account.class.hpp
-        tests.cpp)
+        tests.cpp
+        )
