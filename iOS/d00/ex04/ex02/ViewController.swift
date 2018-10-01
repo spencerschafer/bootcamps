@@ -12,8 +12,8 @@ class ViewController: UIViewController {
 
     var placeholder:Int64 = 0
     var display:Int64 = 0;
-    //var ops:[String] = ("+", "-", "*", "/")
     var op:Int = 0
+    var limit:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +28,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var displayLabel: UILabel!
     
     func modifyDisplay(number:Int64) {
-        display = (display * 10) + number
-        if (display <= 2147483647 && display >= -2147483648) {
-            displayLabel.text = String(display)
-            print("{ \(placeholder):\(display) }")
-        }
-        else {
-            print("[ LIMIT ] ")
-            displayLabel.text = "Limited Reached"
+        if (!limit) {
+            display = (display * 10) + number
+            if (display <= 2147483647 && display >= -2147483648) {
+                displayLabel.text = String(display)
+                print("{ \(placeholder):\(display) }")
+            }
+            else {
+                print("[ LIMIT ] ")
+                limit = true
+                displayLabel.text = "Limited Reached"
+            }
         }
     }
     
@@ -43,14 +46,17 @@ class ViewController: UIViewController {
         print("[ AC ]")
         display = 0
         placeholder = 0
+        limit = false
         displayLabel.text = String(display)
     }
     
     @IBAction func negButton(_ sender: Any) {
         print("[ NEG ]")
-        display *= -1
-        displayLabel.text = String(display)
-        print("{ \(placeholder):\(display) }")
+        if (!limit) {
+            display *= -1
+            displayLabel.text = String(display)
+            print("{ \(placeholder):\(display) }")
+        }
     }
     
     @IBAction func divideButton(_ sender: Any) {
