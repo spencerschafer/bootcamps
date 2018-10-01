@@ -9,11 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     var placeholder:Int64 = 0
-    var display:Int64 = 0
+    var display:Int64 = 0;
+    //var ops:[String] = ("+", "-", "*", "/")
+    var op:Int = 0
     
-    var operator = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -29,19 +30,19 @@ class ViewController: UIViewController {
     func modifyDisplay(number:Int64) {
         display = (display * 10) + number
         if (display <= 2147483647 && display >= -2147483648) {
-            placeholder = display
-            displayLabel.text = String(placeholder)
-            print("{ \(display) }")
+            displayLabel.text = String(display)
+            print("{ \(placeholder):\(display) }")
         }
         else {
-            displayLabel.text = "Limited Reached"
             print("[ LIMIT ] ")
+            displayLabel.text = "Limited Reached"
         }
     }
     
     @IBAction func acButton(_ sender: Any) {
         print("[ AC ]")
         display = 0
+        placeholder = 0
         displayLabel.text = String(display)
     }
     
@@ -49,36 +50,104 @@ class ViewController: UIViewController {
         print("[ NEG ]")
         display *= -1
         displayLabel.text = String(display)
-        print("{ \(display) }")
-    }
-    
-    @IBAction func percentButton(_ sender: Any) {
-        print("[ % ]")
+        print("{ \(placeholder):\(display) }")
     }
     
     @IBAction func divideButton(_ sender: Any) {
-        display = 0
         print("[ ÷ ]")
+        print("{ \(placeholder):\(display) }")
+        if (placeholder == 0) {
+            placeholder = display
+        }
+        else {
+            placeholder /= display
+        }
+        
+        op = 3
+        display = 0
+        displayLabel.text = String(display)
     }
     
     @IBAction func multiplyButton(_ sender: Any) {
         print("[ × ]")
+        print("{ \(placeholder):\(display) }")
+        if (placeholder == 0) {
+            placeholder = display
+        }
+        else {
+            placeholder *= display
+        }
+        op = 2
+        display = 0
+        displayLabel.text = String(display)
     }
     
     @IBAction func minusButton(_ sender: Any) {
         print("[ - ]")
+        print("{ \(placeholder):\(display) }")
+        if (placeholder == 0) {
+            placeholder = display
+        }
+        else {
+            placeholder -= display
+        }
+        op = 1
+        display = 0
+        displayLabel.text = String(display)
     }
     
     @IBAction func plusButton(_ sender: Any) {
         print("[ + ]")
+        print("{ \(placeholder):\(display) }")
+        if (placeholder == 0) {
+            placeholder = display
+        }
+        else {
+            placeholder += display
+        }
+        op = 0
+        display = 0
+        displayLabel.text = "0"
     }
     
     @IBAction func equalButton(_ sender: Any) {
         print("[ = ]")
-    }
-
-    @IBAction func decimalButton(_ sender: Any) {
-        print("[ , ]")
+            switch(op) {
+            case 0:
+                placeholder += display
+                displayLabel.text = String(placeholder)
+                print("{ \(placeholder):\(display) }")
+                display = placeholder
+                placeholder = 0
+                break
+            case 1:
+                placeholder -= display
+                displayLabel.text = String(placeholder)
+                print("{ \(placeholder):\(display) }")
+                display = placeholder
+                placeholder = 0
+                break
+            case 2:
+                placeholder *= display
+                displayLabel.text = String(placeholder)
+                print("{ \(placeholder):\(display) }")
+                display = placeholder
+                placeholder = 0
+                break
+            case 3:
+                if (display == 0) {
+                    displayLabel.text = "Not a number"
+                } else {
+                    placeholder /= display
+                    displayLabel.text = String(placeholder)
+                    print("{ \(placeholder):\(display) }")
+                    display = placeholder
+                    placeholder = 0
+                }
+                break
+            default:
+                break
+        }
     }
     
     @IBAction func zeroButton(_ sender: Any) {
